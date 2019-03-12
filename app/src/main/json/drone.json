@@ -1,0 +1,59 @@
+{
+  "SchemaVersion": "1.0.0",
+  "Id": "drone",
+  "Version": "0.0l.1",
+  "Name": "Drone",
+  "Description": "Simple drone.",
+  "Protocol": "HTTP",
+  "Simulation": {
+    "InitialState": {
+      "velocity": 0,
+      "velocity_unit": "mm/sec",
+      "acceleration": 0,
+      "acceleration_unit": "mm/sec^2",
+      "latitude": 47.476075,
+      "longitude": -122.192026,
+      "altitude": 0
+    },
+    "Interval": "00:00:01",
+    "Scripts": [
+      {
+        "Type": "javascript",
+        "Path": "drone-state.js"
+      }
+    ]
+  },
+  "properties": {
+    "Type": "Drone",
+    "Firmware": "1.0",
+    "Model": "P-96"
+  },
+  "Tags": {
+    "Owner": "Neha"
+  },
+  "Telemetry": [
+    {
+      "Interval": "00:00:05",
+      "MessageTemplate": "{\"velocity\":\"${velocity}\",\"acceleration\":\"${acceleration}\",\"position\":\"${latitude}|${longitude}|${altitude}\"}",
+      "MessageSchema": {
+        "Name": "drone-event-sensor;v1",
+        "Format": "JSON",
+        "Fields": {
+          "velocity": "double",
+          "velocity_unit": "text",
+          "acceleration": "double",
+          "acceleration_unit": "text",
+          "latitude": "double",
+          "longitude": "double",
+          "altitude": "double"
+        }
+      }
+    }
+  ],
+  "CloudToDeviceMethods": {
+    "RecallDrone": {
+      "Type": "javascript",
+      "Path": "droneRecall-method.js"
+    }
+  }
+}

@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                             textResponse.setText(response);
                         }
                     });
-                    Thread.sleep(1000);c
+                    Thread.sleep(1000);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
